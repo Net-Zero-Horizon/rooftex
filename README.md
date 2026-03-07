@@ -1,5 +1,7 @@
 # RoofteX — Rooftop Solar eXchange
 
+[![Tests](https://github.com/msotocalvo/rooftex/actions/workflows/tests.yml/badge.svg)](https://github.com/msotocalvo/rooftex/actions/workflows/tests.yml)
+
 A Python library for rooftop solar potential assessment, adoption dynamics modeling,
 and stochastic availability profile generation.
 
