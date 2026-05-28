@@ -142,8 +142,15 @@ def generate_profiles(config: RooftopConfig) -> RooftopResult:
                 * node_factor
                 * daily_weather[h]
                 * (1 - cloud_pattern[h])
-                + hourly_noise[h]
             )
+            # Irradiance noise is only physical while the sun is up. Adding it
+            # unconditionally let the positive half of N(0, 0.05) leak through
+            # at night (base_profile == 0), producing ~3.7% of annual output as
+            # phantom overnight generation. Gate it to daylight hours. The 1e-9
+            # threshold excludes the sunset boundary hour where sin(pi) returns
+            # a ~1e-16 float instead of exactly 0.
+            if base_profile[h] > 1e-9:
+                raw += hourly_noise[h]
             availability[h, node] = max(0.0, min(1.0, raw))
 
     # Adoption factors
