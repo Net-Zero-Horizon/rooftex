@@ -10,7 +10,7 @@ Modules:
 - rooftex.config: Configuration dataclasses
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __author__ = "RoofteX Development Team"
 
 from .config import RooftopConfig
